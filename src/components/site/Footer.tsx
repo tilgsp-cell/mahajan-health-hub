@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Phone, Facebook, Instagram, Youtube, MapPin, Clock } from "lucide-react";
 import { site } from "@/data/seed";
+import mashoorBanoLogo from "@/assets/mashoorbano-logo.png.asset.json";
 
 export default function Footer() {
   return (
@@ -57,11 +58,16 @@ export default function Footer() {
       <div className="border-t border-slate-800 bg-slate-950">
         <div className="container-x flex flex-col items-center gap-2 py-6 text-center text-xs text-slate-400 md:flex-row md:justify-between md:text-left">
           <div>© {new Date().getFullYear()} Mahajan Hospital & Eye Care Centre. All rights reserved.</div>
-          <div className="flex flex-col items-center gap-1 md:items-end">
-            <div className="flex items-center gap-2">
-              <div className="grid h-6 w-6 place-items-center rounded bg-gradient-to-br from-amber-500 to-rose-500 text-[10px] font-bold text-white">MB</div>
-              <span className="text-slate-300">Website developed by <a href="https://mashoorbano.com" className="font-semibold text-white hover:underline">MashoorBano</a></span>
-            </div>
+          <div className="flex flex-col items-center gap-2 md:items-end">
+            <a href="https://mashoorbano.com" target="_blank" rel="noreferrer" className="flex items-center gap-3 group">
+              <img
+                src={mashoorBanoLogo.url}
+                alt="MashoorBano Digital Agency"
+                className="h-12 w-12 rounded-full ring-1 ring-slate-700 transition group-hover:ring-primary"
+                loading="lazy"
+              />
+              <span className="text-slate-300">Website developed by <span className="font-semibold text-white group-hover:underline">MashoorBano</span></span>
+            </a>
             <div>Atharv Aryan • +91 78147 18340 • Mashoorbano.com</div>
           </div>
         </div>
