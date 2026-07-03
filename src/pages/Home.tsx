@@ -6,12 +6,23 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Seo from "@/components/site/Seo";
 import {
-  heroContent, about, departments, doctors, facilities, packages, testimonials, blogs, faqs, site,
-} from "@/data/seed";
+  useHero, useAbout, useDepartments, useDoctors, useFacilities,
+  usePackages, useTestimonials, useBlogs, useFaqs, useSite,
+} from "@/hooks/useCms";
 
 const fade = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-80px" }, transition: { duration: 0.5 } };
 
 export default function Home() {
+  const heroContent = useHero();
+  const about = useAbout();
+  const departments = useDepartments();
+  const doctors = useDoctors();
+  const facilities = useFacilities();
+  const packages = usePackages();
+  const testimonials = useTestimonials();
+  const blogs = useBlogs();
+  const faqs = useFaqs();
+  const site = useSite();
   return (
     <>
       <Seo title="Advanced Healthcare with Compassion" description="Trusted by families across Gurdaspur for quality medical care and eye treatment. 24×7 Emergency at Mahajan Hospital." />
