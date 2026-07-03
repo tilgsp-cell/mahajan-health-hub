@@ -1,8 +1,9 @@
 import Seo from "@/components/site/Seo";
 import { PageHeader } from "./Departments";
-import { facilities } from "@/data/seed";
+import { useFacilities } from "@/hooks/useCms";
 
 export default function Facilities() {
+  const facilities = useFacilities();
   return (
     <>
       <Seo title="Facilities" description="Modern healthcare facilities at Mahajan Hospital." />
