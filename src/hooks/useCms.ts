@@ -163,9 +163,9 @@ export const useAbout = () =>
   }));
 
 export const useSite = () =>
-  useSingleton<any, typeof seedSite & { show_blogs: boolean; show_packages: boolean }>(
+  useSingleton<any, typeof seedSite & { show_blogs: boolean; show_packages: boolean; logo_url: string }>(
     "site_settings",
-    { ...seedSite, show_blogs: true, show_packages: true },
+    { ...seedSite, show_blogs: true, show_packages: true, logo_url: "" },
     (r) => ({
       ...seedSite,
       name: r.hospital_name ?? seedSite.name,
