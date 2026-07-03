@@ -42,7 +42,7 @@ export default function Footer() {
           <div className="font-display font-semibold text-white">Address</div>
           <p className="mt-3 flex gap-2 text-sm text-slate-400">
             <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
-            <span>Near Normal School,<br/>Desh Bhagat Nagar,<br/>Gurdaspur, Punjab 143521</span>
+            <span>Near Normal School,<br/>Desh Bhagat Nagar,Hardochhanni Road <br/>Gurdaspur, Punjab 143521</span>
           </p>
         </div>
 
