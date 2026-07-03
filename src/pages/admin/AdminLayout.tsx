@@ -5,8 +5,10 @@ import { Button } from "@/components/ui/button";
 import {
   LayoutDashboard, Settings, Image as ImageIcon, Info, Building2, UserRound,
   Wrench, Package, Star, FileText, HelpCircle, Inbox, Search, LogOut,
+  Facebook, Instagram, Youtube,
 } from "lucide-react";
 import Seo from "@/components/site/Seo";
+import { useSite } from "@/hooks/useCms";
 
 const nav = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true },
