@@ -1,11 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 import Seo from "@/components/site/Seo";
 import { PageHeader } from "./Departments";
-import { blogs } from "@/data/seed";
+import { useBlogs } from "@/hooks/useCms";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 export function BlogList() {
+  const blogs = useBlogs();
   return (
     <>
       <Seo title="Health Blog" description="Health tips and articles from Mahajan Hospital." />
@@ -28,6 +29,7 @@ export function BlogList() {
 }
 
 export function BlogPost() {
+  const blogs = useBlogs();
   const { slug } = useParams();
   const b = blogs.find(x => x.slug === slug);
   if (!b) return <div className="container-x py-24 text-center"><h1 className="font-display text-2xl">Post not found</h1><Button asChild className="mt-4"><Link to="/blogs">Back to Blog</Link></Button></div>;

@@ -1,9 +1,10 @@
 import Seo from "@/components/site/Seo";
 import { PageHeader } from "./Departments";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { faqs } from "@/data/seed";
+import { useFaqs } from "@/hooks/useCms";
 
 export default function FAQ() {
+  const faqs = useFaqs();
   return (
     <>
       <Seo title="FAQ" description="Frequently asked questions about Mahajan Hospital." />

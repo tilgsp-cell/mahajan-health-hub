@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { Phone, Facebook, Instagram, Youtube, MapPin, Clock } from "lucide-react";
-import { site } from "@/data/seed";
+import { useSite } from "@/hooks/useCms";
 import mashoorBanoLogo from "@/assets/mashoorbano-logo.png.asset.json";
 
 export default function Footer() {
+  const site = useSite();
   return (
     <footer className="mt-20 bg-slate-900 text-slate-200">
       <div className="container-x grid gap-10 py-14 md:grid-cols-4">

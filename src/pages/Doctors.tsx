@@ -3,10 +3,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Seo from "@/components/site/Seo";
 import { PageHeader } from "./Departments";
-import { doctors } from "@/data/seed";
+import { useDoctors } from "@/hooks/useCms";
 import { Clock } from "lucide-react";
 
 export default function Doctors() {
+  const doctors = useDoctors();
   return (
     <>
       <Seo title="Our Doctors" description="Meet the experienced specialists at Mahajan Hospital & Eye Care Centre." />

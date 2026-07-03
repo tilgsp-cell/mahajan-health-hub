@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Seo from "@/components/site/Seo";
 import { PageHeader } from "./Departments";
-import { galleryItems } from "@/data/seed";
+import { useGallery } from "@/hooks/useCms";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
-const categories = ["All", ...Array.from(new Set(galleryItems.map(g => g.category)))];
-
 export default function Gallery() {
+  const galleryItems = useGallery();
+  const categories = ["All", ...Array.from(new Set(galleryItems.map(g => g.category)))];
   const [cat, setCat] = useState("All");
   const [open, setOpen] = useState<string | null>(null);
   const items = cat === "All" ? galleryItems : galleryItems.filter(g => g.category === cat);
