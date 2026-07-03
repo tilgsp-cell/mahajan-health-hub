@@ -176,6 +176,7 @@ export const useSite = () =>
       address_line1: r.address ?? seedSite.address_line1,
       address_line2: "",
       map_embed: r.map_embed_url ?? seedSite.map_embed,
+      logo_url: r.logo_url ?? "",
       socials: {
         facebook: r.facebook_url ?? seedSite.socials.facebook,
         instagram: r.instagram_url ?? seedSite.socials.instagram,
