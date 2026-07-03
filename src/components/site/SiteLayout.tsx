@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import JsonLd from "./JsonLd";
 import FloatingWhatsApp from "./FloatingWhatsApp";
+import StickySocialBar from "./StickySocialBar";
 
 export default function SiteLayout() {
   return (
@@ -14,6 +15,7 @@ export default function SiteLayout() {
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <StickySocialBar />
     </div>
   );
 }
