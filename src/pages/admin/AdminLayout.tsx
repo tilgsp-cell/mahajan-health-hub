@@ -30,6 +30,7 @@ const nav = [
 export default function AdminLayout() {
   const { loading, user, isAdmin } = useAuth();
   const navigate = useNavigate();
+  const site = useSite();
 
   if (loading) return <div className="grid min-h-screen place-items-center text-muted-foreground">Loading…</div>;
   if (!user) return <Navigate to="/admin/login" replace />;
