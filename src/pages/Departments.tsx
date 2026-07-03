@@ -3,9 +3,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Seo from "@/components/site/Seo";
 import { ArrowRight } from "lucide-react";
-import { departments } from "@/data/seed";
+import { useDepartments } from "@/hooks/useCms";
 
 export default function Departments() {
+  const departments = useDepartments();
   return (
     <>
       <Seo title="Departments & Specialties" description="Explore all medical specialties at Mahajan Hospital & Eye Care Centre, Gurdaspur." />
