@@ -23,13 +23,13 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-white/85 backdrop-blur">
       {/* Emergency top strip */}
       <div className="bg-emergency text-white">
-        <div className="container-x relative flex h-9 items-center justify-center text-xs md:text-sm">
+        <div className="container-x flex h-9 items-center justify-center gap-3 text-xs md:text-sm">
           <a href="tel:+919056437662" className="flex items-center gap-2 font-semibold">
             <Phone className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">24×7 Emergency:</span>
             <span>+91 90564 37662</span>
           </a>
-          <a href="tel:+919056437662" className="absolute right-0 top-1/2 hidden -translate-y-1/2 font-medium underline-offset-2 hover:underline sm:inline">
+          <a href="tel:+919056437662" className="hidden font-medium underline-offset-2 hover:underline sm:inline">
             Call Now
           </a>
         </div>
