@@ -163,19 +163,26 @@ export const useAbout = () =>
   }));
 
 export const useSite = () =>
-  useSingleton<any, typeof seedSite>("site_settings", seedSite, (r) => ({
-    ...seedSite,
-    name: r.hospital_name ?? seedSite.name,
-    tagline: r.tagline ?? seedSite.tagline,
-    phone: r.phone ?? seedSite.phone,
-    emergency: r.emergency_phone ?? seedSite.emergency,
-    email: r.email ?? seedSite.email,
-    address_line1: r.address ?? seedSite.address_line1,
-    address_line2: "",
-    map_embed: r.map_embed_url ?? seedSite.map_embed,
-    socials: {
-      facebook: r.facebook_url ?? seedSite.socials.facebook,
-      instagram: r.instagram_url ?? seedSite.socials.instagram,
-      youtube: r.youtube_url ?? seedSite.socials.youtube,
-    },
-  }));
+  useSingleton<any, typeof seedSite & { show_blogs: boolean; show_packages: boolean }>(
+    "site_settings",
+    { ...seedSite, show_blogs: true, show_packages: true },
+    (r) => ({
+      ...seedSite,
+      name: r.hospital_name ?? seedSite.name,
+      tagline: r.tagline ?? seedSite.tagline,
+      phone: r.phone ?? seedSite.phone,
+      emergency: r.emergency_phone ?? seedSite.emergency,
+      email: r.email ?? seedSite.email,
+      address_line1: r.address ?? seedSite.address_line1,
+      address_line2: "",
+      map_embed: r.map_embed_url ?? seedSite.map_embed,
+      socials: {
+        facebook: r.facebook_url ?? seedSite.socials.facebook,
+        instagram: r.instagram_url ?? seedSite.socials.instagram,
+        youtube: r.youtube_url ?? seedSite.socials.youtube,
+      },
+      show_blogs: r.show_blogs !== false,
+      show_packages: r.show_packages !== false,
+    }),
+  );
+

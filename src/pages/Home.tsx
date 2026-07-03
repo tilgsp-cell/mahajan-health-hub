@@ -175,6 +175,7 @@ export default function Home() {
       </section>
 
       {/* PACKAGES */}
+      {site.show_packages !== false && (
       <section className="py-20">
         <div className="container-x">
           <SectionHeader eyebrow="Preventive Care" title="Health Packages" subtitle="Curated screenings at affordable prices." />
@@ -195,6 +196,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      )}
 
       {/* TESTIMONIALS */}
       <section className="bg-primary/5 py-20">
@@ -217,6 +219,7 @@ export default function Home() {
       </section>
 
       {/* BLOGS */}
+      {site.show_blogs !== false && (
       <section className="py-20">
         <div className="container-x">
           <SectionHeader eyebrow="Health Insights" title="Latest From Our Blog" />
@@ -238,6 +241,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+      )}
+
 
       {/* FAQ */}
       <section className="bg-secondary/40 py-20">

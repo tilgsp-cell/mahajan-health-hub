@@ -12,6 +12,8 @@ export const SiteSettingsPage = () => <SingletonEditor table="site_settings" tit
   { name: "facebook_url", label: "Facebook URL", type: "url" },
   { name: "instagram_url", label: "Instagram URL", type: "url" },
   { name: "youtube_url", label: "YouTube URL", type: "url" },
+  { name: "show_blogs", label: "Show Blogs section", type: "boolean", help: "Hides the Blogs section on the home page and the Blogs link in the navigation." },
+  { name: "show_packages", label: "Show Health Packages section", type: "boolean", help: "Hides the Health Packages section on the home page and the Packages link in the navigation." },
 ]} />;
 
 export const HeroPage = () => <SingletonEditor table="hero_sections" title="Hero Section" fields={[

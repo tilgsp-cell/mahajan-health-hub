@@ -57,22 +57,26 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-slate-800 bg-slate-950">
-        <div className="container-x flex flex-col items-center gap-2 py-6 text-center text-xs text-slate-400 md:flex-row md:justify-between md:text-left">
-          <div>© {new Date().getFullYear()} Mahajan Hospital & Eye Care Centre. All rights reserved.</div>
-          <div className="flex flex-col items-center gap-2 md:items-end">
-            <a href="https://mashoorbano.com" target="_blank" rel="noreferrer" className="flex items-center gap-3 group">
-              <img
-                src={mashoorBanoLogo.url}
-                alt="MashoorBano Digital Agency"
-                className="h-12 w-12 rounded-full ring-1 ring-slate-700 transition group-hover:ring-primary"
-                loading="lazy"
-              />
-              <span className="text-slate-300">Website developed by <span className="font-semibold text-white group-hover:underline">MashoorBano</span></span>
-            </a>
-            <div>Atharv Aryan • +91 78147 18340 • Mashoorbano.com</div>
-          </div>
+        <div className="container-x py-8 text-center text-xs text-slate-400">
+          <div className="mb-4">© {new Date().getFullYear()} Mahajan Hospital & Eye Care Centre. All rights reserved.</div>
+          <a href="https://mashoorbano.com" target="_blank" rel="noreferrer" className="group inline-flex flex-col items-center gap-2">
+            <img
+              src={mashoorBanoLogo.url}
+              alt="MashoorBano Digital Agency"
+              className="h-14 w-14 rounded-full ring-1 ring-slate-700 transition group-hover:ring-primary"
+              loading="lazy"
+            />
+            <div className="text-slate-300">
+              Website developed by <span className="font-semibold text-white group-hover:underline">MashoorBano</span>
+            </div>
+            <div className="text-slate-400">
+              Atharv Aryan · +91 78147 18340 ·{" "}
+              <span className="text-primary group-hover:underline">mashhoorbano.com</span>
+            </div>
+          </a>
         </div>
       </div>
     </footer>
   );
 }
+

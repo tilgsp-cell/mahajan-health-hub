@@ -2,22 +2,39 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const links = [
-  { to: "/", label: "Home" },
-  { to: "/departments", label: "Departments" },
-  { to: "/doctors", label: "Doctors" },
-  { to: "/facilities", label: "Facilities" },
-  { to: "/health-packages", label: "Packages" },
-  { to: "/gallery", label: "Gallery" },
-  { to: "/blogs", label: "Blogs" },
-  { to: "/contact", label: "Contact" },
-];
+import { useSite } from "@/hooks/useCms";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const site = useSite();
+
+  const links = [
+    { to: "/", label: "Home", show: true },
+    { to: "/departments", label: "Departments", show: true },
+    { to: "/doctors", label: "Doctors", show: true },
+    { to: "/facilities", label: "Facilities", show: true },
+    { to: "/health-packages", label: "Packages", show: site.show_packages !== false },
+    { to: "/gallery", label: "Gallery", show: true },
+    { to: "/blogs", label: "Blogs", show: site.show_blogs !== false },
+    { to: "/contact", label: "Contact", show: true },
+  ].filter(l => l.show);
+
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-white/85 backdrop-blur">
+      {/* Emergency top strip */}
+      <div className="bg-emergency text-white">
+        <div className="container-x flex h-9 items-center justify-between text-xs md:text-sm">
+          <a href="tel:+919056437662" className="flex items-center gap-2 font-semibold">
+            <Phone className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">24×7 Emergency:</span>
+            <span>+91 90564 37662</span>
+          </a>
+          <a href="tel:+919056437662" className="hidden font-medium underline-offset-2 hover:underline sm:inline">
+            Call Now
+          </a>
+        </div>
+      </div>
+
       <div className="container-x flex h-16 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-2">
           <div className="grid h-9 w-9 place-items-center rounded-lg bg-primary font-display font-bold text-primary-foreground">M</div>
@@ -43,9 +60,6 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a href="tel:+919056437662" className="hidden items-center gap-2 rounded-full bg-emergency/10 px-3 py-1.5 text-sm font-semibold text-emergency md:flex">
-            <Phone className="h-3.5 w-3.5" /> Emergency
-          </a>
           <Button asChild size="sm" className="hidden md:inline-flex">
             <Link to="/appointment">Book Appointment</Link>
           </Button>
