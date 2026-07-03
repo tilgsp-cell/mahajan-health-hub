@@ -3,10 +3,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Seo from "@/components/site/Seo";
 import { PageHeader } from "./Departments";
-import { packages } from "@/data/seed";
+import { usePackages } from "@/hooks/useCms";
 import { HeartPulse } from "lucide-react";
 
 export default function Packages() {
+  const packages = usePackages();
   return (
     <>
       <Seo title="Health Packages" description="Preventive health screenings at Mahajan Hospital." />
