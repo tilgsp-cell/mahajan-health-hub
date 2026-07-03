@@ -32,6 +32,8 @@ create table if not exists public.site_settings (
   map_embed_url text, logo_url text,
   facebook_url text, instagram_url text, youtube_url text,
   seo_title text, seo_description text, seo_keywords text, og_image_url text,
+  show_blogs boolean not null default true,
+  show_packages boolean not null default true,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -43,6 +45,9 @@ create policy "public read" on public.site_settings for select to anon, authenti
 drop policy if exists "admin write" on public.site_settings;
 create policy "admin write" on public.site_settings for all to authenticated
   using (public.is_admin(auth.uid())) with check (public.is_admin(auth.uid()));
+-- Migration for existing installs (safe to re-run):
+alter table public.site_settings add column if not exists show_blogs boolean not null default true;
+alter table public.site_settings add column if not exists show_packages boolean not null default true;
 
 -- ---------- HERO ------------------------------------------------------------
 create table if not exists public.hero_sections (
