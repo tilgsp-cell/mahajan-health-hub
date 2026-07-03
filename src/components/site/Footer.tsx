@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Phone, Facebook, Instagram, Youtube, MapPin, Clock } from "lucide-react";
 import { useSite } from "@/hooks/useCms";
-import mashoorBanoLogo from "@/assets/mashoorbano-logo.png.asset.json";
+import mashoorBanoLogo from "@/assets/mashoorbano-logo.png";
 
 export default function Footer() {
   const site = useSite();
@@ -57,11 +57,18 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-slate-800 bg-slate-950">
-        <div className="container-x py-8 text-center text-xs text-slate-400">
-          <div className="mb-4">© {new Date().getFullYear()} Mahajan Hospital & Eye Care Centre. All rights reserved.</div>
-          <a href="https://mashoorbano.com" target="_blank" rel="noreferrer" className="group inline-flex flex-col items-center gap-2">
+        <div className="container-x flex flex-col items-start gap-6 py-8 text-xs text-slate-400 md:flex-row md:items-center md:justify-between">
+          <div className="text-left">
+            © {new Date().getFullYear()} Mahajan Hospital & Eye Care Centre. All rights reserved.
+          </div>
+          <a
+            href="https://mashhoorbano.com"
+            target="_blank"
+            rel="noreferrer"
+            className="group flex w-full flex-col items-center gap-2 text-center md:w-auto"
+          >
             <img
-              src={mashoorBanoLogo.url}
+              src={mashoorBanoLogo}
               alt="MashoorBano Digital Agency"
               className="h-14 w-14 rounded-full ring-1 ring-slate-700 transition group-hover:ring-primary"
               loading="lazy"
