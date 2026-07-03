@@ -1,12 +1,13 @@
 import Seo from "@/components/site/Seo";
 import { PageHeader } from "./Departments";
-import { site } from "@/data/seed";
+import { useSite } from "@/hooks/useCms";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 export default function Contact() {
+  const site = useSite();
   return (
     <>
       <Seo title="Contact Us" description="Reach Mahajan Hospital & Eye Care Centre in Gurdaspur." />
