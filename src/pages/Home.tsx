@@ -135,8 +135,8 @@ export default function Home() {
       <section className="py-20">
         <div className="container-x">
           <SectionHeader eyebrow="Our Team" title="Meet Our Doctors" subtitle="Experienced specialists dedicated to your family's health." />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-            {doctors.map(d => (
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {doctors.slice(0, 3).map(d => (
               <Card key={d.slug} className="overflow-hidden pt-0 text-center">
                 <div className="aspect-square overflow-hidden bg-secondary">
                   <img src={d.image} alt={d.name} loading="lazy" className="h-full w-full object-cover" />
