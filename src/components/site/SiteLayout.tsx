@@ -15,6 +15,7 @@ export default function SiteLayout() {
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <StickySocialBar />
     </div>
   );
 }
