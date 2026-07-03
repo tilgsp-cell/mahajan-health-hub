@@ -37,7 +37,11 @@ export default function Navbar() {
 
       <div className="container-x flex h-16 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-2">
-          <div className="grid h-9 w-9 place-items-center rounded-lg bg-primary font-display font-bold text-primary-foreground">M</div>
+          {site.logo_url ? (
+            <img src={site.logo_url} alt={site.name} className="h-10 w-10 rounded-lg object-contain" />
+          ) : (
+            <div className="grid h-9 w-9 place-items-center rounded-lg bg-primary font-display font-bold text-primary-foreground">M</div>
+          )}
           <div className="leading-tight">
             <div className="font-display text-sm font-semibold">Mahajan Hospital</div>
             <div className="text-[10px] uppercase tracking-wider text-muted-foreground">& Eye Care Centre</div>
