@@ -163,9 +163,9 @@ export const useAbout = () =>
   }));
 
 export const useSite = () =>
-  useSingleton<any, typeof seedSite & { show_blogs: boolean; show_packages: boolean }>(
+  useSingleton<any, typeof seedSite & { show_blogs: boolean; show_packages: boolean; logo_url: string }>(
     "site_settings",
-    { ...seedSite, show_blogs: true, show_packages: true },
+    { ...seedSite, show_blogs: true, show_packages: true, logo_url: "" },
     (r) => ({
       ...seedSite,
       name: r.hospital_name ?? seedSite.name,
@@ -176,6 +176,7 @@ export const useSite = () =>
       address_line1: r.address ?? seedSite.address_line1,
       address_line2: "",
       map_embed: r.map_embed_url ?? seedSite.map_embed,
+      logo_url: r.logo_url ?? "",
       socials: {
         facebook: r.facebook_url ?? seedSite.socials.facebook,
         instagram: r.instagram_url ?? seedSite.socials.instagram,

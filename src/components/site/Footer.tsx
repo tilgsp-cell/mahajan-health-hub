@@ -10,7 +10,11 @@ export default function Footer() {
       <div className="container-x grid gap-10 py-14 md:grid-cols-4">
         <div>
           <div className="flex items-center gap-2">
-            <div className="grid h-10 w-10 place-items-center rounded-lg bg-primary text-primary-foreground font-display font-bold">M</div>
+            {site.logo_url ? (
+              <img src={site.logo_url} alt={site.name} className="h-10 w-10 rounded-lg bg-white object-contain p-1" />
+            ) : (
+              <div className="grid h-10 w-10 place-items-center rounded-lg bg-primary text-primary-foreground font-display font-bold">M</div>
+            )}
             <div className="font-display text-lg font-semibold text-white">Mahajan Hospital</div>
           </div>
           <p className="mt-4 text-sm text-slate-400">
