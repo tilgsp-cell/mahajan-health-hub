@@ -5,8 +5,10 @@ import { Button } from "@/components/ui/button";
 import {
   LayoutDashboard, Settings, Image as ImageIcon, Info, Building2, UserRound,
   Wrench, Package, Star, FileText, HelpCircle, Inbox, Search, LogOut,
+  Facebook, Instagram, Youtube,
 } from "lucide-react";
 import Seo from "@/components/site/Seo";
+import { useSite } from "@/hooks/useCms";
 
 const nav = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true },
@@ -28,6 +30,7 @@ const nav = [
 export default function AdminLayout() {
   const { loading, user, isAdmin } = useAuth();
   const navigate = useNavigate();
+  const site = useSite();
 
   if (loading) return <div className="grid min-h-screen place-items-center text-muted-foreground">Loading…</div>;
   if (!user) return <Navigate to="/admin/login" replace />;
@@ -59,6 +62,26 @@ export default function AdminLayout() {
             </NavLink>
           ))}
         </nav>
+        <div className="border-t p-3">
+          <div className="mb-1.5 text-xs font-medium text-muted-foreground">Socials</div>
+          <div className="flex gap-2">
+            {site.socials.facebook && (
+              <a href={site.socials.facebook} target="_blank" rel="noreferrer" className="grid h-8 w-8 place-items-center rounded-md bg-slate-100 text-slate-600 transition hover:bg-primary hover:text-primary-foreground" aria-label="Facebook">
+                <Facebook className="h-4 w-4" />
+              </a>
+            )}
+            {site.socials.instagram && (
+              <a href={site.socials.instagram} target="_blank" rel="noreferrer" className="grid h-8 w-8 place-items-center rounded-md bg-slate-100 text-slate-600 transition hover:bg-primary hover:text-primary-foreground" aria-label="Instagram">
+                <Instagram className="h-4 w-4" />
+              </a>
+            )}
+            {site.socials.youtube && (
+              <a href={site.socials.youtube} target="_blank" rel="noreferrer" className="grid h-8 w-8 place-items-center rounded-md bg-slate-100 text-slate-600 transition hover:bg-primary hover:text-primary-foreground" aria-label="YouTube">
+                <Youtube className="h-4 w-4" />
+              </a>
+            )}
+          </div>
+        </div>
         <div className="mt-2 border-t p-3">
           <div className="mb-2 truncate text-xs text-muted-foreground">{user.email}</div>
           <Button variant="outline" size="sm" className="w-full" onClick={() => supabase.auth.signOut().then(() => navigate("/admin/login"))}>
