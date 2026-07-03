@@ -1,11 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 import Seo from "@/components/site/Seo";
 import { PageHeader } from "./Departments";
-import { blogs } from "@/data/seed";
+import { useBlogs } from "@/hooks/useCms";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 export function BlogList() {
+  const blogs = useBlogs();
   return (
     <>
       <Seo title="Health Blog" description="Health tips and articles from Mahajan Hospital." />
