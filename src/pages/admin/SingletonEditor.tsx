@@ -5,13 +5,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
+
+type FieldType = "text" | "textarea" | "url" | "json" | "boolean";
 
 // Generic singleton editor: reads the first row of a table (or creates one),
 // exposes all its fields as editable inputs, and saves back.
 export default function SingletonEditor({ table, title, fields }: {
   table: string; title: string;
-  fields: { name: string; label: string; type?: "text" | "textarea" | "url" | "json" }[];
+  fields: { name: string; label: string; type?: FieldType; help?: string }[];
 }) {
   const [row, setRow] = useState<any>(null);
   const [form, setForm] = useState<Record<string, any>>({});
@@ -22,7 +25,12 @@ export default function SingletonEditor({ table, title, fields }: {
       const { data } = await supabase.from(table).select("*").limit(1).maybeSingle();
       setRow(data);
       const init: Record<string, any> = {};
-      fields.forEach(f => { const v = data?.[f.name]; init[f.name] = f.type === "json" ? JSON.stringify(v ?? {}, null, 2) : (v ?? ""); });
+      fields.forEach(f => {
+        const v = data?.[f.name];
+        if (f.type === "json") init[f.name] = JSON.stringify(v ?? {}, null, 2);
+        else if (f.type === "boolean") init[f.name] = v !== false;
+        else init[f.name] = v ?? "";
+      });
       setForm(init);
     })();
   }, [table]);
@@ -30,12 +38,16 @@ export default function SingletonEditor({ table, title, fields }: {
   const save = async () => {
     setBusy(true);
     const payload: Record<string, any> = {};
-    fields.forEach(f => {
-      if (f.type === "json") {
-        try { payload[f.name] = JSON.parse(form[f.name] || "{}"); }
-        catch { toast.error(`Invalid JSON in ${f.label}`); throw new Error("bad json"); }
-      } else payload[f.name] = form[f.name] || null;
-    });
+    try {
+      fields.forEach(f => {
+        if (f.type === "json") {
+          try { payload[f.name] = JSON.parse(form[f.name] || "{}"); }
+          catch { toast.error(`Invalid JSON in ${f.label}`); throw new Error("bad json"); }
+        } else if (f.type === "boolean") {
+          payload[f.name] = !!form[f.name];
+        } else payload[f.name] = form[f.name] || null;
+      });
+    } catch { setBusy(false); return; }
     const q = row ? supabase.from(table).update(payload).eq("id", row.id) : supabase.from(table).insert(payload);
     const { error } = await q;
     setBusy(false);
@@ -50,11 +62,23 @@ export default function SingletonEditor({ table, title, fields }: {
       <Card><CardContent className="grid gap-4 p-6">
         {fields.map(f => (
           <div key={f.name}>
-            <Label>{f.label}</Label>
-            {f.type === "textarea" || f.type === "json" ? (
-              <Textarea rows={f.type === "json" ? 8 : 3} value={form[f.name] ?? ""} onChange={e => setForm({ ...form, [f.name]: e.target.value })} />
+            {f.type === "boolean" ? (
+              <div className="flex items-center justify-between rounded-lg border p-3">
+                <div>
+                  <Label className="text-sm">{f.label}</Label>
+                  {f.help && <div className="text-xs text-muted-foreground">{f.help}</div>}
+                </div>
+                <Switch checked={!!form[f.name]} onCheckedChange={v => setForm({ ...form, [f.name]: v })} />
+              </div>
             ) : (
-              <Input value={form[f.name] ?? ""} onChange={e => setForm({ ...form, [f.name]: e.target.value })} />
+              <>
+                <Label>{f.label}</Label>
+                {f.type === "textarea" || f.type === "json" ? (
+                  <Textarea rows={f.type === "json" ? 8 : 3} value={form[f.name] ?? ""} onChange={e => setForm({ ...form, [f.name]: e.target.value })} />
+                ) : (
+                  <Input value={form[f.name] ?? ""} onChange={e => setForm({ ...form, [f.name]: e.target.value })} />
+                )}
+              </>
             )}
           </div>
         ))}
@@ -63,3 +87,4 @@ export default function SingletonEditor({ table, title, fields }: {
     </div>
   );
 }
+
