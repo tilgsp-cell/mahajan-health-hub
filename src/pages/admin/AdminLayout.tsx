@@ -44,7 +44,7 @@ export default function AdminLayout() {
   }
 
   return (
-    <div className="grid min-h-screen grid-cols-[240px,1fr] bg-secondary/30">
+    <div className="grid min-h-screen grid-cols-[240px_1fr] bg-secondary/30">
       <Seo title="Admin" />
       <aside className="border-r bg-white">
         <div className="flex h-16 items-center gap-2 border-b px-4">
